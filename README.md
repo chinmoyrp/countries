@@ -1,6 +1,6 @@
-INSTALLATION
+# This is a test project
 
-Tested on:
+Tested on
     Host System: openSUSE Leap 15.3
     Docker: 20.10.12-ce
     Browser:
@@ -8,7 +8,42 @@ Tested on:
         Firefox: 91.8.0esr (64-bit)
     VSCode: 1.67.2
 
-OPTION 1:
+API details
+    Endpoints: /countries, /search
+    POST body:
+        /countries:
+            {
+                orderby: string,
+                sortby: string,
+                rows: number
+            }
+
+        /search:
+            {
+                search: string,
+                sortby: string,
+                orderby: string,
+                rows: number
+            }
+
+    Response:
+        {
+            countries: [
+                [countries for page 1],
+                ...,
+                [countries for page n]
+            ]
+        }
+    
+    Note: Following are the valid field names for search:
+            id, countryname, capital, population
+
+    Note: Search query is case sensitive.
+            E.g. countryname:Nepal
+
+INSTALLATION
+
+OPTION 1
 
 1. Install "Remote - Containers" plugin in VSCode.
 2. Open the "countries" folder in VSCode and it will prompt to reopen in container.
@@ -32,14 +67,7 @@ Note: It will also pull and run docker image for postgres and create a new netwo
         npm install
         npm run dev
 
-        [frontend will be on localhost:3000]
-
-5. Following are the valid field names for search:
-    id, countryname, capital, population
-
-6. Search query is case sensitive.
-    
-6. E.g. countryname:Nepal
+    Note: frontend will be on localhost:3000
 
 
 OPTION 2:
