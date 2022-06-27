@@ -23,7 +23,8 @@ Note: It will also pull and run docker image for postgres and create a new netwo
         cd backend
         cargo run  
 
-        [api will serve on localhost:8080]
+    Note: api will serve on localhost:8080
+    Note: countries.csv has to be present in the folder where "cargo run" is invoked. Right now it is in backend.
 
     4.2 For frontend
 
