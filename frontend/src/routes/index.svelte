@@ -3,6 +3,7 @@ import { onMount } from "svelte";
     let countries = [[{}]];
     let page = 0;    
     let searchQuery = '';
+    const validSearchQuery = new RegExp('[a-z.]+:[^ ]+$');
 
     let rows = [5, 10, 20, 25, 50, 100, 200];
     let row = rows[0];
@@ -34,6 +35,7 @@ import { onMount } from "svelte";
             .then(response => response.json())
             .then(data => {
                countries = data["countries"];
+               page = 0;
             });
     }
     
@@ -48,6 +50,7 @@ import { onMount } from "svelte";
             .then(response => response.json())
             .then(data => {
                countries = data["countries"];
+               page = 0;
             });
     }
 
@@ -67,7 +70,9 @@ import { onMount } from "svelte";
         if (searchQuery.length === 0) {
             fetchCountries(row, column.value, order.value);
         } else {
-            searchCountries(searchQuery, row, column.value, order.value)
+            if (validSearchQuery.test(searchQuery)) {
+                searchCountries(searchQuery, row, column.value, order.value)
+            }
         }
     }
 
